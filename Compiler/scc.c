@@ -20,10 +20,10 @@ void *mallocz(int size)
 
 /***********************************************************
 * 功能:	计算哈希地址
-* key:哈希关键字(为了与本书中SC语言关键字区分开，此处我们称为哈希关键字)
+* key:哈希关键字
 * MAXKEY:哈希表长度
 **********************************************************/
-int elf_hash(char *key)
+int elf_hash	(char *key)
 {
 	int h = 0, g;
 	while (*key)
@@ -76,8 +76,8 @@ char *get_file_ext(char *fname)
 **********************************************************/
 int main(int argc, char ** argv)
 {
-
-	fin = fopen("helloworld.c", "rb");
+	//char *s = "helloworld.c";
+	fin = fopen(argv[1], "rb");
 	if (!fin)
 	{
 		printf("不能打开SC源文件!\n");
