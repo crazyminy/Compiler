@@ -11,9 +11,9 @@ typedef struct DynString
 	char	*data;		// 指向字符串的指针
 } DynString;
 
-void dynstring_realloc(DynString *cstr, int new_size);
-void dynstring_chcat(DynString *cstr, int ch);
-void dynstring_reset(DynString *cstr);
+void dynstring_realloc(DynString *cstr, int new_size);//重新分配字符串容量
+void dynstring_chcat(DynString *cstr, int ch);//追加单个字符到动态字符串对象
+void dynstring_reset(DynString *cstr);//重置动态字符串
 /*******************************dynstring.h begin****************************/
 
 /*******************************dynarray.h begin****************************/
@@ -25,10 +25,10 @@ typedef struct DynArray
 	void **data;		// 指向数据指针数组
 } DynArray;
 
-void dynarray_add(DynArray *parr, void *data);
-void dynarray_init(DynArray *parr, int initsize);
-void dynarray_free(DynArray *parr);
-int dynarray_search(DynArray *parr, int key);
+void dynarray_add(DynArray *parr, void *data);//追加动态数组元素
+void dynarray_init(DynArray *parr, int initsize);//动态数组初始化
+void dynarray_free(DynArray *parr);//释放动态数组所使用的内存空间
+int dynarray_search(DynArray *parr, int key);//通过哈希关键字来查找动态数组中的元素
 /*******************************dynarray.h begin****************************/
 
 /********************************lex.h begin*****************************/
