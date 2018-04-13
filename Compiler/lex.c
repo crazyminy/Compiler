@@ -1,6 +1,6 @@
-#include "scc.h" 
+#include "scc.h"
 TkWord* tk_hashtable[MAXKEY];	// 单词哈希表
-DynArray tktable;		// 单词表
+DynArray tktable;				// 单词表中放置标识符，包括变量名,函数名,结构定义名
 DynString tkstr;
 DynString sourcestr;
 int tkvalue;
@@ -114,7 +114,7 @@ void getch()
 /***********************************************************
 * 功能:	解析标识符
 **********************************************************/
-TkWord* parse_identifier()
+void parse_identifier()
 {
 	dynstring_reset(&tkstr);
 	dynstring_chcat(&tkstr, ch);
@@ -125,7 +125,6 @@ TkWord* parse_identifier()
 		getch();
 	}
 	dynstring_chcat(&tkstr, '\0');
-	return tkword_insert(tkstr.data);
 }
 
 /***********************************************************
@@ -331,7 +330,7 @@ void init_lex()
 **********************************************************/
 void skip_white_space()
 {
-	while (ch == ' ' || ch == '\t' || ch == '\r')      // 忽略空格,和TAB ch =='\n' ||
+	while (ch == ' ' || ch == '\t' || ch == '\r')
 	{
 		if (ch == '\r')
 		{
@@ -340,9 +339,11 @@ void skip_white_space()
 				return;
 			line_num++;
 		}
-		printf("%c", ch); //这句话，决定是否打印空格，如果不输出空格，源码中空格将被去掉，所有源码挤在一起
+		else
+			printf("%c", ch); //这句话，决定是否打印空格，如果不输出空格，源码中空格将被去掉，所有源码挤在一起
 		getch();
 	}
+
 }
 
 /***********************************************************
@@ -356,7 +357,7 @@ void preprocess()
 			skip_white_space();
 		else if (ch == '/')
 		{
-			//向前多读一个字节看是否是注释开始符，猜错了把多读的字符再放回去
+			// 向前多读一个字节看是否是注释开始符，猜错了把多读的字符再放回去
 			getch();
 			if (ch == '*')
 			{
@@ -430,7 +431,8 @@ void get_token()
 	case '_':
 	{
 		TkWord* tp;
-		tp = parse_identifier();
+		parse_identifier();
+		tp = tkword_insert(tkstr.data);
 		token = tp->tkcode;
 		break;
 	}
@@ -577,6 +579,7 @@ void get_token()
 		getch();
 		break;
 	}
+	syntax_indent();
 }
 
 
@@ -604,5 +607,5 @@ void test_lex()
 		get_token();
 		color_token(LEX_NORMAL);
 	} while (token != TK_EOF);
-	printf("\n代码行数: %d行\n", line_num);
+	printf("\n\n代码行数: %d行\n\n", line_num);
 }

@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="scc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dynarray.c" />
+    <ClCompile Include="dynstring.c" />
+    <ClCompile Include="error.c" />
+    <ClCompile Include="grammar.c" />
+    <ClCompile Include="lex.c" />
+    <ClCompile Include="scc.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{17D52C28-1F75-4D40-AA53-171DE57290F9}</ProjectGuid>
@@ -114,17 +125,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="dynarray.c" />
-    <ClCompile Include="dynstring.c" />
-    <ClCompile Include="error.c" />
-    <ClCompile Include="grammar.c" />
-    <ClCompile Include="lex.c" />
-    <ClCompile Include="scc.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="scc.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

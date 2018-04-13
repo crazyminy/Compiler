@@ -15,6 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="scc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="dynarray.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -24,19 +29,14 @@
     <ClCompile Include="error.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="grammar.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="lex.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="scc.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="grammar.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="scc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

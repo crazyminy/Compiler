@@ -20,10 +20,10 @@ void *mallocz(int size)
 
 /***********************************************************
 * 功能:	计算哈希地址
-* key:哈希关键字
+* key:哈希关键字(为了与本书中SC语言关键字区分开，此处我们称为哈希关键字)
 * MAXKEY:哈希表长度
 **********************************************************/
-int elf_hash	(char *key)
+int elf_hash(char *key)
 {
 	int h = 0, g;
 	while (*key)
@@ -38,12 +38,26 @@ int elf_hash	(char *key)
 }
 
 /***********************************************************
+* 功能:	计算字节对齐位置
+* n:		未对齐前值
+* align:   对齐粒度
+**********************************************************/
+int calc_align(int n, int align)
+{
+	return ((n + align - 1) & (~(align - 1)));
+}
+
+
+/***********************************************************
 * 功能:	初始化
 **********************************************************/
 void init()
 {
 	line_num = 1;
 	init_lex();
+
+	syntax_state = SNTX_NUL;
+	syntax_level = 0;
 }
 
 
@@ -76,19 +90,20 @@ char *get_file_ext(char *fname)
 **********************************************************/
 int main(int argc, char ** argv)
 {
-	//char *s = "helloworld.c";
 	fin = fopen(argv[1], "rb");
 	if (!fin)
 	{
 		printf("不能打开SC源文件!\n");
 		return 0;
 	}
+
 	init();
 	getch();
-	test_lex();
+	get_token();
+	translation_unit();
 	cleanup();
+	printf("\n%s 语法分析通过!\n", argv[1]);
 	fclose(fin);
-	printf("%s 词法分析成功!", argv[1]);
 	system("pause");
-	return 1;
+	return 0;
 }
