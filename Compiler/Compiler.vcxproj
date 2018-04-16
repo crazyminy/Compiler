@@ -25,9 +25,15 @@
     <ClCompile Include="dynarray.c" />
     <ClCompile Include="dynstring.c" />
     <ClCompile Include="error.c" />
+    <ClCompile Include="gencode.c" />
     <ClCompile Include="grammar.c" />
     <ClCompile Include="lex.c" />
+    <ClCompile Include="outcoff.c" />
+    <ClCompile Include="outpe.c" />
     <ClCompile Include="scc.c" />
+    <ClCompile Include="stack.c" />
+    <ClCompile Include="symbol.c" />
+    <ClCompile Include="operand.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
